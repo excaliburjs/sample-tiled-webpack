@@ -7,6 +7,15 @@ export const Resources = {
     TiledMap: new TiledMapResource('./res/first-level.tmx')
 }
 
+// Change the path to be relative to the root directory for the webpack prod build
+const convertPath = Resources.TiledMap.convertPath;
+Resources.TiledMap.convertPath = (originPath: string, relativePath: string) => {
+    if (relativePath.indexOf('../') > -1) {
+        return './' + relativePath.split('../')[1];
+    }
+    return convertPath(originPath, relativePath);
+}
+
 export const loader = new Loader();
 for (let resource of Object.values(Resources)) {
     loader.addResource(resource);
