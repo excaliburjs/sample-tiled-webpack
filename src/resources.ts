@@ -3,8 +3,8 @@ import { TiledMapResource } from '@excaliburjs/plugin-tiled';
 
 
 export const Resources = {
-    HeroSpriteSheetPng: new ImageSource('img/Solaria Demo Pack Update 03/Solaria Demo Pack Update 03/16x16/Sprites/Hero 01.png', false, ImageFiltering.Pixel),
-    TiledMap: new TiledMapResource('res/first-level.tmx')
+    HeroSpriteSheetPng: new ImageSource('./img/Solaria Demo Pack Update 03/Solaria Demo Pack Update 03/16x16/Sprites/Hero 01.png', false, ImageFiltering.Pixel),
+    TiledMap: new TiledMapResource('./res/first-level.tmx')
 }
 
 export const loader = new Loader();
