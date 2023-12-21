@@ -1,6 +1,7 @@
 import * as ex from 'excalibur';
 import { Resources } from './resources';
 import { Config } from './config';
+import { TiledObjectComponent } from '@excaliburjs/plugin-tiled';
 
 export class Player extends ex.Actor {
     constructor(pos: ex.Vector) {
@@ -10,9 +11,19 @@ export class Player extends ex.Actor {
             height: 16,
             collisionType: ex.CollisionType.Active
         })
+        // this.on('collisionstart', evt => {
+        //     const data = evt.other.get(TiledObjectComponent);
+        //     console.log(data);
+        // });
     }
 
     onInitialize(engine: ex.Engine): void {
+        // this.on('collisionstart', evt => {
+        //     const data = evt.other.get(TiledObjectComponent);
+        //     console.log(data);
+        // });
+
+
         const playerSpriteSheet = ex.SpriteSheet.fromImageSource({
             image: Resources.HeroSpriteSheetPng as ex.ImageSource,
             grid: {
