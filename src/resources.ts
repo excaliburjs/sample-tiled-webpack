@@ -4,7 +4,7 @@ import { TiledMapResource } from '@excaliburjs/plugin-tiled';
 
 export const Resources = {
     HeroSpriteSheetPng: new ImageSource('./img/Solaria Demo Pack Update 03/Solaria Demo Pack Update 03/16x16/Sprites/Hero 01.png', false, ImageFiltering.Pixel),
-    TiledMap: new TiledMapResource('./res/first-level.tmx')
+    TiledMap: new TiledMapResource('./res/beginner_town.tmx')
 }
 
 // Change the path to be relative to the root directory for the webpack prod build
