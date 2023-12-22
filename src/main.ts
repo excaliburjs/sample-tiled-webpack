@@ -19,20 +19,22 @@ game.start(loader).then(() => {
         // Cannot rely on [0] so need to loop for value = portal and name = name?
         if (obj.properties.some(p => p.value ==='portal')){ // < -- no longer depends on prop order
             // Actors have a built in circle collider if radius is set
-            // const actorWithCircleCollider = new ex.Actor({
-            //     pos: ex.vec(obj.x + obj.width!/2, obj.y + obj.width!/2), // < -- tiled renders stuff oddly so this is a workaround
-            //     radius: (obj.width || 20) / 2, // < - radius is 1/2 width
-            //     collisionType: ex.CollisionType.Passive,
-            //     color: ex.Color.Green, // <-- debug color
-            //     z: 99,  // < -- debug z above all
-            //     name:'portal',
-            //     anchor: ex.vec(0.5, 0.5), // < -- switch back to center
-            // });
+            const actorWithCircleCollider = new ex.Actor({
+                pos: ex.vec(obj.x + obj.width!/2, obj.y + obj.width!/2), // < -- tiled renders stuff oddly so this is a workaround
+                radius: (obj.width || 20) / 2, // < - radius is 1/2 width
+                collisionType: ex.CollisionType.Passive,
+                color: ex.Color.Green, // <-- debug color
+                z: 99,  // < -- debug z above all
+                name:'portal',
+                anchor: ex.vec(0.5, 0.5), // < -- switch back to center
+            });
 
-            // actorWithCircleCollider.on('collisionstart', () => {
-            //     console.log('Look at the portal on that!');
-            // });
-            // game.currentScene.add(actorWithCircleCollider);
+            actorWithCircleCollider.addComponent( new TiledObjectComponent(obj));
+
+            actorWithCircleCollider.on('collisionstart', () => {
+                console.log('Look at the portal on that!');
+            });
+            game.currentScene.add(actorWithCircleCollider);
         }
     }
     const player = objects.getObjectByName("Player");
@@ -51,4 +53,9 @@ game.start(loader).then(() => {
     const devtool = new DevTool(game);
 
     Resources.TiledMap.addTiledMapToScene(game.currentScene);
+
+    game.input.pointers.primary.on('down', evt => {
+        const tile = Resources.TiledMap.getTileByPoint('ground', evt.worldPos);
+        console.log('id', tile?.id, 'tile props:', tile?.properties);
+    });
 });
