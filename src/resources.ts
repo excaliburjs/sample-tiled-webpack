@@ -1,19 +1,19 @@
 import { ImageFiltering, ImageSource, Loadable, Loader } from "excalibur";
-import { TiledMapResource } from '@excaliburjs/plugin-tiled';
+import { TiledResource } from '@excaliburjs/plugin-tiled';
+import { Player } from "./player";
 
 
 export const Resources = {
     HeroSpriteSheetPng: new ImageSource('./img/Solaria Demo Pack Update 03/Solaria Demo Pack Update 03/16x16/Sprites/Hero 01.png', false, ImageFiltering.Pixel),
-    TiledMap: new TiledMapResource('./res/first-level.tmx')
-}
-
-// Change the path to be relative to the root directory for the webpack prod build
-const convertPath = Resources.TiledMap.convertPath;
-Resources.TiledMap.convertPath = (originPath: string, relativePath: string) => {
-    if (relativePath.indexOf('../') > -1) {
-        return './' + relativePath.split('../')[1];
-    }
-    return convertPath(originPath, relativePath);
+    TiledMap: new TiledResource('./res/first-level.tmx', {
+        entityClassNameFactories: {
+            player: (props) => {
+                const player = new Player(props.worldPos);
+                player.z = 100;
+                return player;
+            }
+        },
+    })
 }
 
 export const loader = new Loader();
