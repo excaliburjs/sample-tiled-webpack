@@ -3,6 +3,9 @@ const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: './src/main.ts',
+    externals: {
+        JSDOM: 'JSDOM'
+    },
     mode: 'development',
     devtool: 'source-map',
     devServer: {
