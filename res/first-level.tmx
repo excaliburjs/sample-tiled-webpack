@@ -33,18 +33,15 @@
 </data>
  </layer>
  <objectgroup id="2" name="Objects">
-  <properties>
-   <property name="excalibur" type="bool" value="true"/>
-  </properties>
   <object id="1" name="Chest" gid="231" x="48" y="80" width="16" height="16">
    <properties>
     <property name="CollisionType" value="Fixed"/>
    </properties>
   </object>
-  <object id="2" name="Camera" type="Camera" x="38.6966" y="30.2658">
+  <object id="2" name="Camera" type="Camera" x="80.0299" y="72.2658">
    <properties>
     <property name="camera" type="bool" value="true"/>
-    <property name="zoom" type="float" value="8"/>
+    <property name="zoom" type="float" value="4"/>
    </properties>
    <point/>
   </object>
