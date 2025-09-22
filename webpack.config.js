@@ -19,12 +19,8 @@ module.exports = {
     },
     plugins: [
         new CopyPlugin({
-            patterns: [
-                "index.html",
-                {from: "res/", to: "res/"},
-                {from: "img/", to: "img/"}
-            ],
-        }),
+            patterns: ['index.html']
+        })
     ],
     resolve: {
         extensions: ['.ts', '.js']
@@ -42,9 +38,13 @@ module.exports = {
                 exclude: /node_modules/
             },
             {
-                test: /\.(png|jpg|bmp|wav|mp3)$/,
-                type: 'asset/resource'
+                test: /\.(png|jpg|bmp|wav|mp3|tmx|tsx)$/,
+                loader: 'file-loader',
+                options: {
+                    name: '[path][name].[ext]',
+                    context: path.resolve(__dirname)
+                }
             }
         ]
     }
-}
+};
